@@ -1,0 +1,51 @@
+﻿@model ProiectBigData.Models.Spital
+
+@{
+    ViewData["Title"] = "Editare Spital";
+}
+
+<h1>Modifică Detalii Spital</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="Id" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Nume" class="control-label"></label>
+                <input asp-for="Nume" class="form-control" />
+                <span asp-validation-for="Nume" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Adresa" class="control-label"></label>
+                <input asp-for="Adresa" class="form-control" />
+                <span asp-validation-for="Adresa" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="control-label">Număr Personal Medical</label>
+                <input asp-for="NrPersonal" class="form-control" type="number" />
+                <span asp-validation-for="NrPersonal" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="control-label">Total Paturi</label>
+                <input asp-for="NrPaturiTotal" class="form-control" type="number" />
+                <span asp-validation-for="NrPaturiTotal" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="control-label">Paturi Ocupate (Momentan)</label>
+                <input asp-for="NrPaturiOcupate" class="form-control" type="number" />
+                <span asp-validation-for="NrPaturiOcupate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Salvează" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Înapoi</a>
+            </div>
+        </form>
+    </div>
+</div>

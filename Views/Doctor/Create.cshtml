@@ -1,0 +1,49 @@
+﻿@model ProiectBigData.Models.Doctor
+
+@{
+    ViewData["Title"] = "Adaugă Doctor";
+}
+
+<h1>Adaugă un Doctor Nou</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Nume" class="control-label"></label>
+                <input asp-for="Nume" class="form-control" placeholder="Ex: Dr. Ionescu" />
+                <span asp-validation-for="Nume" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Varsta" class="control-label"></label>
+                <input asp-for="Varsta" class="form-control" />
+                <span asp-validation-for="Varsta" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="control-label">Specializare</label>
+                <select asp-for="SpecializareId" class="form-control" asp-items="ViewBag.SpecializareId">
+                    <option value="">-- Alege Specializarea --</option>
+                </select>
+                <span asp-validation-for="SpecializareId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="control-label">Spital</label>
+                <select asp-for="SpitalId" class="form-control" asp-items="ViewBag.SpitalId">
+                    <option value="">-- Alege Spitalul --</option>
+                </select>
+                <span asp-validation-for="SpitalId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Adaugă Doctor" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-secondary">Înapoi</a>
+            </div>
+        </form>
+    </div>
+</div>

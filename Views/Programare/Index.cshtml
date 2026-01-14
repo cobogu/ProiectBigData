@@ -1,0 +1,69 @@
+﻿@model IEnumerable<ProiectBigData.Models.Programare>
+
+@{
+    ViewData["Title"] = "Lista Programări";
+}
+
+<h1>Programările Mele</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Fă o programare nouă</a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Pacient</th>
+            <th>Data și Ora</th>
+            <th>Doctor</th>
+            <th>Spital (Locație)</th>
+            <th>Adresă Spital</th>
+            <th>Status Spital</th>
+            <th>Actiuni</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.NumePacient</td>
+                <td>@item.Data.ToString("g")</td>
+                <td>Dr. @item.Doctor.Nume</td>
+
+                <td class="text-success fw-bold">@item.Doctor.Spital.Nume</td>
+                <td>@item.Doctor.Spital.Adresa</td>
+
+                <td>
+                    @{
+                        var ocupate = item.Doctor.Spital.NrPaturiOcupate;
+                        var total = item.Doctor.Spital.NrPaturiTotal;
+                        var libere = total - ocupate;
+                    }
+
+                    @if (libere <= 0)
+                    {
+                        <span class="badge bg-danger">COMPLET OCUPAT</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-success">@libere paturi libere</span>
+                    }
+                    <br />
+                    <small>(@ocupate / @total)</small>
+                </td>
+
+                <td>
+                    <form asp-action="Delete" asp-route-id="@item.Id" method="post" style="display:inline;">
+
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            Șterge
+                        </button>
+
+                    </form>
+                </td>
+               
+
+            </tr>
+        }
+    </tbody>
+</table>

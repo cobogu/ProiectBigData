@@ -1,0 +1,41 @@
+﻿@model ProiectBigData.Models.StireMedicala
+
+@{
+    ViewData["Title"] = "Publică Știre";
+}
+
+<h1>Publică o știre nouă</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Titlu" class="control-label fw-bold">Titlu Intervenție</label>
+                <input asp-for="Titlu" class="form-control" placeholder="Ex: Operație pe cord deschis reușită..." />
+                <span asp-validation-for="Titlu" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Descriere" class="control-label fw-bold">Descriere Detaliată</label>
+                <textarea asp-for="Descriere" class="form-control" rows="5" placeholder="Descrieți procedura și rezultatul..."></textarea>
+                <span asp-validation-for="Descriere" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="control-label fw-bold">Medic Responsabil</label>
+                <select asp-for="DoctorId" class="form-control" asp-items="ViewBag.DoctorId">
+                    <option value="">-- Selectează medicul --</option>
+                </select>
+                <span asp-validation-for="DoctorId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-4">
+                <input type="submit" value="Publică Știrea" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-secondary">Înapoi</a>
+            </div>
+        </form>
+    </div>
+</div>

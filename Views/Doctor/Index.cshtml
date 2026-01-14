@@ -1,0 +1,43 @@
+﻿@model IEnumerable<ProiectBigData.Models.Doctor>
+
+@{
+    ViewData["Title"] = "Lista Doctori";
+}
+
+<h1>Echipa Medicală</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Adaugă Doctor Nou</a>
+</p>
+
+<table class="table table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Nume</th>
+            <th>Vârsta</th>
+            <th>Specializare</th>
+            <th>Spital</th>
+            <th>Acțiuni</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var doc in Model)
+        {
+            <tr>
+                <td>Dr. @doc.Nume</td>
+                <td>@doc.Varsta ani</td>
+                <td>
+                    <span class="badge bg-info text-dark">@doc.Specializare.Nume</span>
+                </td>
+                <td>@doc.Spital.Nume</td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@doc.Id" class="btn btn-warning btn-sm">
+                        Editează
+                    </a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ProiectBigData.Models.Spital>
+
+@{
+    ViewData["Title"] = "Lista Spitale";
+}
+
+<h1>Lista Spitale</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nume Spital</th>
+            <th>Adresa</th>
+            <th>Personal Medical</th>
+            <th>Grad de Ocupare (Paturi)</th>
+            <th>Acțiuni</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var spital in Model)
+        {
+            // Calculăm locurile libere
+            var locuriLibere = spital.NrPaturiTotal - spital.NrPaturiOcupate;
+
+            // Calculăm procentul pentru o bară de progres (opțional, arată profi)
+            var procent = spital.NrPaturiTotal > 0 ? (spital.NrPaturiOcupate * 100 / spital.NrPaturiTotal) : 0;
+
+            <tr>
+                <td>@spital.Nume</td>
+                <td>@spital.Adresa</td>
+                <td class="text-center">
+                    <span class="badge bg-secondary" style="font-size: 0.9em;">
+                        <i class="bi bi-people-fill"></i> @spital.NrPersonal
+                    </span>
+                </td>
+                <td style="min-width: 200px;">
+                    <div class="d-flex justify-content-between mb-1">
+                        <span>@spital.NrPaturiOcupate / @spital.NrPaturiTotal</span>
+                        <span class="badge @(locuriLibere > 0 ? "bg-success" : "bg-danger")">
+                            @(locuriLibere > 0 ? $"{locuriLibere} libere" : "PLIN")
+                        </span>
+                    </div>
+                    
+                    <div class="progress" style="height: 6px;">
+                        <div class="progress-bar @(procent > 90 ? "bg-danger" : "bg-info")" 
+                             role="progressbar" 
+                             style="width: @procent%;" 
+                             aria-valuenow="@spital.NrPaturiOcupate" 
+                             aria-valuemin="0" 
+                             aria-valuemax="@spital.NrPaturiTotal">
+                        </div>
+                    </div>
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@spital.Id" class="btn btn-warning btn-sm">
+                        Editează
+                    </a>
+                </td>
+
+            </tr>
+      
+        }
+    </tbody>
+</table>

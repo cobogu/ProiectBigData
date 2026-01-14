@@ -1,0 +1,55 @@
+﻿@model ProiectBigData.Models.Doctor
+
+@{
+    ViewData["Title"] = "Editare Doctor";
+}
+
+<h1>Modifică datele doctorului</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group mb-3">
+                <label asp-for="Nume" class="control-label"></label>
+                <input asp-for="Nume" class="form-control" />
+                <span asp-validation-for="Nume" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Varsta" class="control-label"></label>
+                <input asp-for="Varsta" class="form-control" />
+                <span asp-validation-for="Varsta" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="control-label">Specializare</label>
+                <select asp-for="SpecializareId" class="form-control" asp-items="ViewBag.SpecializareId"></select>
+                <span asp-validation-for="SpecializareId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="control-label">Spital</label>
+                <select asp-for="SpitalId" class="form-control" asp-items="ViewBag.SpitalId"></select>
+                <span asp-validation-for="SpitalId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Salvează Modificările" class="btn btn-warning" />
+                <a asp-action="Index" class="btn btn-secondary">Anulează</a>
+            </div>
+        </form> <hr /> <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="Id" />
+
+            <button type="submit" class="btn btn-danger w-100">
+                Șterge Doctorul Definitiv
+            </button>
+        </form>
+       
+
+    </div>
+</div>

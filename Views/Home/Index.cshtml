@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Platforma Medicala</h1>
+    <p>Acces la spitale, doctori, arhiva medicala.</p>
+    <a href="#">
+        <img src="@(Url.Content("~/images/pozabd.jpg"))" alt="Platforma Medicala" class="img-fluid mx-auto d-block" />
+    </a>
+</div>
+
+<div class="alert alert-info mt-4">
+    <h4>Status Microserviciu gRPC:</h4>
+    <p><strong>Mesaj:</strong> @ViewBag.GrpcMessage</p>
+    <p><strong>Server Time:</strong> @ViewBag.GrpcTime</p>
+</div>
