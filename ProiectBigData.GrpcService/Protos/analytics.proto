@@ -1,0 +1,23 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "ProiectBigData.GrpcService";
+
+package analytics;
+
+// Definirea Serviciului (Ce metode putem apela?)
+service AnalyticsMonitor {
+  // O metodă simplă care primește un ID și returnează un Status
+  rpc GetSystemStatus (StatusRequest) returns (StatusReply);
+}
+
+// Mesajul trimis de MVC (Cererea)
+message StatusRequest {
+  string component_name = 1; // ex: "MVC App"
+}
+
+// Mesajul primit de la gRPC (Răspunsul)
+message StatusReply {
+  string message = 1;        // Mesajul text
+  bool is_operational = 2;   // E funcțional sau nu?
+  string timestamp = 3;      // Data serverului
+}

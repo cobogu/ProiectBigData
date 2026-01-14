@@ -1,0 +1,2 @@
+obj\Debug\net8.0\Protos/Analytics.cs \
+obj\Debug\net8.0\Protos/AnalyticsGrpc.cs: Protos/analytics.proto
