@@ -1,0 +1,102 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "My API",
+    "description": "Docs for my API",
+    "version": "v1"
+  },
+  "paths": {
+    "/predict": {
+      "post": {
+        "tags": [
+          "ProiectBigDataWebApi"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ModelInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ModelInput": {
+        "type": "object",
+        "properties": {
+          "column1": {
+            "type": "number",
+            "format": "float"
+          },
+          "label": {
+            "type": "string",
+            "nullable": true
+          },
+          "text": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ModelOutput": {
+        "type": "object",
+        "properties": {
+          "column1": {
+            "type": "number",
+            "format": "float"
+          },
+          "label": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "text": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "float"
+            },
+            "nullable": true
+          },
+          "features": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "float"
+            },
+            "nullable": true
+          },
+          "predictedLabel": {
+            "type": "string",
+            "nullable": true
+          },
+          "score": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "float"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
